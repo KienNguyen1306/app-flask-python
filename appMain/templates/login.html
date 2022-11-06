@@ -1,0 +1,52 @@
+{% extends 'defaultLayout/base.html' %}
+
+{%block content%}
+
+<div class="container_main">
+  <div class="body_main">
+    <div class="body_main_left">
+      <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp" alt="">
+    </div>
+    <div class="body_main_right">
+      <div class="body_main_right_form">
+  
+        <form method = 'post' action="">
+          <h2 class="form_header">Đăng nhập</h2>
+          {%if error%}
+            <div class="alert alert-warning"> 
+                <strong>Warning!</strong> {{error}}
+            </div>
+          {%endif%}
+          <div class="from_contro">
+            <label for="name">User name :</label>
+            <input type="text" name="name" id="name" placeholder="name">
+          </div>
+          <div class="from_contro">
+            <label for="password">Password :</label>
+            <input type="text" name="password" id="password" placeholder="name">
+          </div>
+          <button type="submit" class="btn-danger btn-lg btn-block">Đăng nhập</button>
+        </form>
+        <div class="form_forgot">
+          <a>Quên mật khẩu</a>
+          <a>Đăng nhập bằng sms</a>
+        </div>
+        <div class="lhhuce">
+          <div class="lhhucE1"></div>
+          <span>OR</span>
+          <div class="lhhucE2"></div>
+        </div>
+        <div class="btn_form-bottom">
+          <button type="button" class="btn-outline-primary login_btn"><i class="form_icon fa-brands fa-facebook"></i>Facebook</button>
+          <button type="button" class="btn-outline-primary login_btn"><i class="form_icon fa-brands fa-google"></i>Google</button>
+          <button type="button" class="btn-outline-primary login_btn"><i class="form_icon fa-brands fa-apple"></i>Apple</button>
+        </div>
+        <div class="form_end_resgister">
+          <p>Bạn có muốn đến với shop ? <a href="{{url_for('register')}}">Đăng ký</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{%endblock%}

@@ -1,0 +1,49 @@
+{% extends 'defaultLayout/base.html' %}
+
+{%block content%}
+
+<div class="wrapper">
+    <div class="container_main">
+        <div class="container_body product_all">
+          <div class="product_body-list">
+            <div class="product_body-all-header">
+                <div class="qwe"></div>
+                <h3>Tất cả</h3>
+                <div class="qwer"></div>
+            </div>
+            <div class="product_body-list-product">
+                {% for p in product%}
+                <div class="product_item" data-aos="flip-left">
+                  <div class="product_item_image">
+                    <a href="{{url_for('product_detail',product_id = p.id)}}"><img src="{{p.image}}" alt=""></a>
+                  </div>
+                  <div class="product_item-name">{{p.name}}</div>
+                  <div class="product_item_body">
+                    <div class="product_item_des">{{p.description}}</div>
+                  <div class="product_item_price">
+                    <p>{{p.price}}</p>
+                    <p>Đã bán</p>
+                  </div>
+                  <div class="product_item_price">
+                    <button onclick="add_cart({{p.id}},'{{p.name}}','{{p.description}}',{{p.price}},'{{p.image}}')"  class="btn btn-primary">BUY</button>
+                    <a href='{{url_for('product_detail',product_id = p.id)}}' class="btn btn-primary btn-primary-a ">Chi tiết</a>
+                  </div>
+                  </div>
+                </div>
+                {%endfor%}
+            </div>
+            <div class="body_product_tag">
+              <nav aria-label="Page navigation example">
+                  <ul class="pagination">
+                    {%for tag in range(1,start +1)%}
+                    <li class="page-item {%if 'page' in request.args and tag ==request.args.page|int%}active{%endif%}"><a class="page-link" href="{{url_for('product_all',page = tag)}}">{{tag}}</a></li>
+                    {%endfor%}
+                  </ul>
+                </nav>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>
+
+{%endblock%}

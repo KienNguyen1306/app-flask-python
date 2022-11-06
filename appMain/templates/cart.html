@@ -1,0 +1,67 @@
+{% extends 'defaultLayout/base.html' %} {%block content%}
+
+<div class="wrapper">
+  <div class="container_main">
+    <table class="table cart_body">
+      <thead>
+        <tr class="table_header">
+          <th scope="col">Sản phẩm</th>
+          <th scope="col">Đơn Giá</th>
+          <th scope="col">Số Lượng</th>
+          <th scope="col">Số tiền</th>
+          <th scope="col">Thao tác</th>
+        </tr>
+      </thead>
+      {% if 'cart' in session and session.get('cart')%}
+      <tbody>
+        {% for c in session['cart'].values()%}
+        <tr class="product_{{c.id}}">
+          <th class="table_item">
+            <img src="{{c.image}}" alt="" />
+            <div class="table_des">
+              <p>{{c.name}}</p>
+              <p class="table_des-p">{{c.des}}</p>
+            </div>
+          </th>
+          <td>{{"{:,.1f}".format(c.price)}} VND</td>
+          <td class="imput_number">
+            <input
+              onblur="update_cart({{c.id}},this,{{c.price}})"
+              type="number"
+              class="form-control-lg text-center"
+              value="{{c.count}}"
+              min="1"
+            />
+          </td>
+          <td class="col_count_{{c.id}}">{{c.count}} x {{"{:,.1f}".format(c.price)}} </td>
+          <td>
+            <button
+              onclick="delete_cart({{c.id}})"
+              class="btn btn-white border-secondary bg-white btn-md mb-2"
+            >
+              <i class="fas fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+        {%endfor%}
+      </tbody>
+      {%else%}
+      <td class="col_count">Không có sản phẩm nào</td>
+      {%endif%}
+    </table>
+    <div class="cart_bottom">
+      <a href="{{url_for('home')}}"><i class="fas fa-arrow-left mr-2"></i>về trang product</a>
+      <div class="cart_bill">
+        <p >số lượng : <span class="count1">{{count.sum_count}}</span></p>
+        <p >tổng tiền: <span class="sum_price">{{"{:,.1f}".format(count.sum_price)}} VNĐ</span> </p>
+        {% if current_user.is_authenticated %}
+        <button onclick="pay()" type="button" class="btn-danger btn_pay">Thanh toán</button>
+        {%else%}
+        <a href="{{url_for('user_login',next ='cart')}}" type="button" class="btn-danger btn_pay">Đăng nhập đẻ thanh toán</a>
+        {%endif%}
+      </div>
+    </div>
+  </div>
+</div>
+
+{%endblock%}

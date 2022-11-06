@@ -1,0 +1,248 @@
+{% extends 'defaultLayout/base.html'%}
+
+{%block content%}
+
+  <!-- banner -->
+    <div class="container_body banner">
+      <div class="banner_list">
+        <div class="banner_item" data-aos="zoom-in">
+          <div class="banner_item_slider">
+            <div class="banner_item-left">
+              <img class="img_1" src="https://uploads-ssl.webflow.com/6073fad993ae97919f0b0772/609fa7b53c435fb27393587d_dd5787fa0c9306323b7176ce91a4d31ff6041c4a2.jpg"/>
+            </div>
+            <div class="banner_item-left">
+              <img class="img_1" src="https://cdn.tgdd.vn/hoi-dap/1355217/banner-tgdd-800x300.jpg"/>
+            </div>
+            <div class="banner_item-left">
+              <img class="img_1" src="https://img3.thuthuatphanmem.vn/uploads/2019/10/08/banner-quang-cao-dien-thoai_103211774.jpg"/>
+            </div>
+            <div class="banner_item-left">
+              <img class="img_1" src="https://canhcoupon.com/images/khuyen-mai/2017/04/dat-gach-lien-tay-sam-ngay-galaxy-s8-rinh-ngay-4-000-000d-chi-co-fpt-shop-banner.jpg"/>
+            </div>
+          </div>
+          <button type="button" class="btn btn-light nt_nxt"><i class="fa-solid fa-angle-left"></i></button>
+          <button type="button" class="btn btn-light nt_nxt1"><i class="fa-solid fa-angle-right"></i></button>
+        </div>
+        <div class="banner_item">
+          <div class="banner_item_right" data-aos="zoom-in">
+            <img class="img_2" src="https://intphcm.com/data/upload/banner-la-gi.jpg"/>
+          </div>
+          <div class="banner_item_right" data-aos="zoom-in">
+            <img class="img_2" src="http://nhoncdrom.com/wp-content/uploads/2019/08/banner.jpg"/>
+          </div>
+        </div>
+      </div>
+      <div class="banner_bottom">
+        <div class="banner_bottom_item" data-aos="zoom-in">
+          <img src="https://cf.shopee.vn/file/46a2a2c810622f314d78455da5e5d926_xhdpi" alt="">
+          <p>Khung Giờ săn le</p>
+        </div>
+        <div class="banner_bottom_item" data-aos="zoom-in">
+          <img src="https://cf.shopee.vn/file/46a2a2c810622f314d78455da5e5d926_xhdpi" alt="">
+          <p>Khung Giờ săn le</p>
+        </div>
+      </div>
+      <div class="banner_image">
+        <div class="banner_image_item" data-aos="fade-up">
+          <img src="https://cf.shopee.vn/file/30bf417c70dea40332f5820c16f6d4ce" alt="">
+        </div>
+      </div>
+    </div>
+  <!-- =========== danh mục ============== -->
+  <div class="wrapper">
+    <div class="container_body">
+      <div class="caterogy">
+        <div class="caterogy_header">
+          <h3>Danh Mục</h3>
+        </div>
+        <div class="caterogy_body">
+          <div class="banner_bottom_item caterogy_item" data-aos="zoom-in">
+            <img src="https://cf.shopee.vn/file/31234a27876fb89cd522d7e3db1ba5ca_tn" alt="">
+            <p>Điện thoại</p>
+          </div>
+          <div class="banner_bottom_item caterogy_item" data-aos="zoom-in">
+            <img src="https://cf.shopee.vn/file/c3f3edfaa9f6dafc4825b77d8449999d_tn" alt="">
+            <p>Máy tính</p>
+          </div>
+          <div class="banner_bottom_item caterogy_item" data-aos="zoom-in">
+            <img src="https://cf.shopee.vn/file/46a2a2c810622f314d78455da5e5d926_xhdpi" alt="">
+            <p>Tai nghe</p>
+          </div>
+        </div>
+      </div>
+      <div class="product_list">
+        <div class="product_list_header">
+          <h3>Điện Thoại</h3>
+        </div>
+        <div class="next_prev">
+          <div class="from_list0">
+            <div class="item product_body">
+              {%for p in products%}
+              {%if p.category_id == 1%}
+              <div class="product_item" data-aos="flip-left">
+                <div class="product_item_image">
+                  <a href="{{url_for('product_detail',product_id = p.id)}}"><img src="{{p.image}}" alt=""></a>
+                </div>
+                <div class="product_item-name">{{p.name}}</div>
+                <div class="product_item_body">
+                  <div class="product_item_des">{{p.description}}</div>
+                <div class="product_item_price">
+                  <p>{{"{:,.1f}".format(p.price)}} VND</p>
+                  <p>dã bán</p>
+                </div>
+                <div class="product_item_price">
+                  <button onclick="add_cart({{p.id}},'{{p.name}}','{{p.description}}',{{p.price}},'{{p.image}}')" class="btn btn-primary">BUY</button>
+                  <a href='{{url_for('product_detail',product_id = p.id)}}' class="btn btn-primary btn-primary-a ">Chi tiết</a>
+                </div>
+                </div>
+              </div>
+              {%endif%}
+              {%endfor%}
+              <button class="btn prev"><i class="fa-solid fa-angle-left"></i></button>
+              <button class="btn next"> <i class="fa-solid fa-angle-right"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="product_list">
+        <div class="product_list_header">
+          <h3>Tai Nghe</h3>
+        </div>
+        <div class="next_prev">
+          <div class="from_list1">
+            <div class="item product_body">
+              {%for p in products%}
+              {%if p.category_id == 4%}
+              <div class="product_item" data-aos="flip-left">
+                <div class="product_item_image">
+                  <a href="{{url_for('product_detail',product_id = p.id)}}"><img src="{{p.image}}" alt=""></a>
+                </div>
+                <div class="product_item-name">{{p.name}}</div>
+                <div class="product_item_body">
+                  <div class="product_item_des">{{p.description}}</div>
+                <div class="product_item_price">
+                  <p>{{"{:,.1f}".format(p.price)}} VND</p>
+                  <p>dã bán</p>
+                </div>
+                <div class="product_item_price">
+                  <button onclick="add_cart({{p.id}},'{{p.name}}','{{p.description}}',{{p.price}},'{{p.image}}')" class="btn btn-primary">BUY</button>
+                  <a href={{url_for('product_detail',product_id = p.id)}} class="btn btn-primary btn-primary-a ">Chi tiết</a>
+                </div>
+                </div>
+              </div>
+              {%endif%}
+              {%endfor%}
+              <button class="btn prev"><i class="fa-solid fa-angle-left"></i></button>
+              <button class="btn next"> <i class="fa-solid fa-angle-right"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="product_list">
+        <div class="product_list_header">
+          <h3>Máy Tính</h3>
+        </div>
+        <div class="next_prev">
+          <div class="from_list2">
+            <div class="item product_body">
+              {%for p in products%}
+              {%if p.category_id == 2%}
+              <div class="product_item" data-aos="flip-left">
+                <div class="product_item_image">
+                  <a href="{{url_for('product_detail',product_id = p.id)}}"><img src="{{p.image}}" alt=""></a>
+                </div>
+                <div class="product_item-name">{{p.name}}</div>
+                <div class="product_item_body">
+                  <div class="product_item_des">{{p.description}}</div>
+                <div class="product_item_price">
+                  <p>{{"{:,.1f}".format(p.price)}} VND</p>
+                  <p>dã bán</p>
+                </div>
+                <div class="product_item_price">
+                  <button onclick="add_cart({{p.id}},'{{p.name}}','{{p.description}}',{{p.price}},'{{p.image}}')" class="btn btn-primary">BUY</button>
+                  <a href='{{url_for('product_detail',product_id = p.id)}}' class="btn btn-primary btn-primary-a ">Chi tiết</a>
+                </div>
+                </div>
+              </div>
+              {%endif%}
+              {%endfor%}
+              <button class="btn prev"><i class="fa-solid fa-angle-left"></i></button>
+              <button class="btn next"> <i class="fa-solid fa-angle-right"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="product_list">
+        <div class="product_list_header">
+          <h3>Chuột máy tính</h3>
+        </div>
+        <div class="next_prev">
+          <div class="from_list3">
+            <div class="item product_body">
+              {%for p in products%}
+              {%if p.category_id == 3%}
+              <div class="product_item" data-aos="flip-right">
+                <div class="product_item_image">
+                  <a href="{{url_for('product_detail',product_id = p.id)}}"><img src="{{p.image}}" alt=""></a>
+                </div>
+                <div class="product_item-name">{{p.name}}</div>
+                <div class="product_item_body">
+                  <div class="product_item_des">{{p.description}}</div>
+                <div class="product_item_price">
+                  <p>{{"{:,.1f}".format(p.price)}} VND</p>
+                  <p>dã bán</p>
+                </div>
+                <div class="product_item_price">
+                  <button onclick="add_cart({{p.id}},'{{p.name}}','{{p.description}}',{{p.price}},'{{p.image}}')" class="btn btn-primary">BUY</button>
+                  <a href={{url_for('product_detail',product_id = p.id)}} class="btn btn-primary btn-primary-a ">Chi tiết</a>
+                </div>
+                </div>
+              </div>
+              {%endif%}
+              {%endfor%}
+              <button class="btn prev"><i class="fa-solid fa-angle-left"></i></button>
+              <button class="btn next"> <i class="fa-solid fa-angle-right"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- =========================sản phẩm hô nay ====================================== -->
+<div class="wrapper">
+  <div class="container_body">
+    <div class="product_body-list">
+      <div class="product_body-list-header">
+        <h3>Gợ ý hôm nay</h3>
+      </div>
+      <div class="item product_body-list-product">
+        {%for p in products1%}
+        <div class="product_item" data-aos="flip-right">
+          <div class="product_item_image">
+            <a href="{{url_for('product_detail',product_id = p.id)}}"><img src="{{p.image}}" alt=""></a>
+          </div>
+          <div class="product_item-name">{{p.name}}</div>
+          <div class="product_item_body">
+            <div class="product_item_des">{{p.description}}</div>
+          <div class="product_item_price">
+            <p>{{"{:,.1f}".format(p.price)}} VND</p>
+            <p>dã bán</p>
+          </div>
+          <div class="product_item_price">
+            <button onclick="add_cart({{p.id}},'{{p.name}}','{{p.description}}',{{p.price}},'{{p.image}}')"  class="btn btn-primary">BUY</button>
+            <a href='{{url_for('product_detail',product_id = p.id)}}' class="btn btn-primary btn-primary-a ">Chi tiết</a>
+          </div>
+          </div>
+        </div>
+        {%endfor%}
+
+      </div>
+    </div>
+    <div class="btn_vew-all-product">
+      <a href="{{url_for('product_all')}}" type="button" class="btn-primary btn-lg btn-block">Xem tất cả</a>
+    </div>
+  </div>
+</div>
+
+{%endblock%}
